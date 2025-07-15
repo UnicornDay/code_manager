@@ -10,39 +10,41 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function Login() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  // Remove password state
+  // const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // can remove if not used elsewhere
   const [error, setError] = useState(null);
+  const [magicLoading, setMagicLoading] = useState(false);
+  const [magicMessage, setMagicMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  // Remove handleSubmit and password login logic
+
+  const handleMagicLink = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setMagicLoading(true);
+    setMagicMessage('');
     setError(null);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setLoading(false);
+    const { error } = await supabase.auth.signInWithOtp({ email });
+    setMagicLoading(false);
     if (error) setError(error.message);
-    else navigate('/');
+    else setMagicMessage('Check your email for the magic link!');
   };
 
   return (
     <div style={{ color: '#fff', textAlign: 'center', marginTop: 100 }}>
-      <h2>Login Page</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'inline-block', textAlign: 'left', background: '#222', padding: 24, borderRadius: 8 }}>
+      <h2>Sign in with Magic Link</h2>
+      <form onSubmit={handleMagicLink} style={{ display: 'inline-block', textAlign: 'left', background: '#222', padding: 24, borderRadius: 8 }}>
         <div style={{ marginBottom: 12 }}>
           <label>Email:<br />
             <input type="email" value={email} onChange={e => setEmail(e.target.value)} required style={{ width: 240, padding: 8, borderRadius: 4, border: '1px solid #444' }} />
           </label>
         </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>Password:<br />
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: 240, padding: 8, borderRadius: 4, border: '1px solid #444' }} />
-          </label>
-        </div>
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: 10, borderRadius: 4, background: '#61dafb', color: '#222', fontWeight: 'bold', border: 'none' }}>
-          {loading ? 'Logging in...' : 'Login'}
+        <button type="submit" disabled={magicLoading} style={{ width: '100%', padding: 10, borderRadius: 4, background: '#7cfb61', color: '#222', fontWeight: 'bold', border: 'none' }}>
+          {magicLoading ? 'Sending magic link...' : 'Send Magic Link'}
         </button>
-        {error && <div style={{ color: 'red', marginTop: 12 }}>{error}</div>}
+        {magicMessage && <div style={{ color: 'lightgreen', marginTop: 12 }}>{magicMessage}</div>}
+        {error && !magicMessage && <div style={{ color: 'red', marginTop: 12 }}>{error}</div>}
       </form>
     </div>
   );
