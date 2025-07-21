@@ -113,55 +113,19 @@ function App() {
           <ProtectedRoute>
             <div className="App">
               <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
                 <button onClick={handleLogout} style={{ position: 'absolute', top: 20, right: 20, padding: '8px 16px', borderRadius: 4, background: '#ff5252', color: '#fff', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>
                   Log Out
                 </button>
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <div>
-                  <h3>Supabase test_table Table:</h3>
-                  <button onClick={fetchData} disabled={loading} style={{marginBottom: 10}}>
-                    {loading ? 'Refreshing...' : 'Refresh Data'}
-                  </button>
-                  {error && <div style={{ color: 'red' }}>Error: {error}</div>}
-                  {data && <pre style={{ color: 'yellow', background: '#222', maxWidth: 400, margin: '0 auto', padding: 10, borderRadius: 4 }}>{JSON.stringify(data, null, 2)}</pre>}
-                  {data ? (
-                    Array.isArray(data) && data.length > 0 ? (
-                      <table style={{ margin: '0 auto', borderCollapse: 'collapse', background: '#222', color: '#fff', borderRadius: 4 }}>
-                        <thead>
-                          <tr>
-                            {Object.keys(data[0]).map((key) => (
-                              <th key={key} style={{ border: '1px solid #444', padding: '8px' }}>{key}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {data.map((row, idx) => (
-                            <tr key={idx}>
-                              {Object.values(row).map((value, i) => (
-                                <td key={i} style={{ border: '1px solid #444', padding: '8px' }}>{String(value)}</td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    ) : (
-                      <div style={{ color: '#fff' }}>No data found.</div>
-                    )
-                  ) : (
-                    !error && <span>Loading...</span>
-                  )}
-                </div>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-                </a>
+                <iframe
+                  src="/file_manager.html"
+                  title="File Manager"
+                  style={{
+                    width: '100vw',
+                    height: '100vh',
+                    border: 'none',
+                    background: '#fff'
+                  }}
+                />
               </header>
             </div>
           </ProtectedRoute>
