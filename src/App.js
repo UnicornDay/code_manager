@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { createClient } from '@supabase/supabase-js';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 const supabaseUrl = 'https://koxpylkobinhdldrkmog.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtveHB5bGtvYmluaGRsZHJrbW9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwODM0MDgsImV4cCI6MjA2NjY1OTQwOH0.WE1bKMbq99khwx7cNeD3fsSo6YXaMHzUb7gBQml2x5E';
