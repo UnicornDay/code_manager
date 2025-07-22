@@ -5,7 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 import { HashRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 const supabaseUrl = 'xxxxxx';
-const supabaseAnonKey = 'xxx3MiOiJzdXBhYmFzZSIsInJlZiI6ImtveHB5bGtvYmluaGRsZHJrbW9nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwODM0MDgsImV4cCI6MjA2NjY1OTQwOH0.WE1bKMbq99khwx7cNeD3fsSo6YXaMHzUb7gBQml2x5E';
+const supabaseAnonKey = 'xxxxxxxxxx';
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function Login() {
